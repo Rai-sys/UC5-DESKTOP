@@ -1,0 +1,45 @@
+### GET
+GET http://localhost:3000/produtos
+
+###
+
+### GET - ID
+GET http://localhost:3000/produtos/2
+Content-Type: application/json
+
+### POST
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+    "nome": "Notebook",
+    "preco": 2.500,
+    "quantidade": 27
+
+}
+
+###
+
+### PUT
+PUT http://localhost:3000/produtos/3
+Content-Type: application/json
+
+{
+    "novoNome": "Notebook",
+    "novoPreco": 2570,
+    "novaQuantidade": 17
+}
+
+###
+
+### DELETE
+DELETE http://localhost:3000/produtos
+Content-Type: application/json
+
+###
+
+### DELETE - ID
+DELETE http://localhost:3000/produtos/1
+Content-Type: application/json
+
+###

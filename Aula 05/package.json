@@ -1,0 +1,17 @@
+{
+  "name": "aula-05",
+  "version": "1.0.0",
+  "description": "Nesta aula, vamos explorar o conceito de middlewares no Express.js e entender como eles podem ser utilizados para processar requisições e respostas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.3"
+  }
+}
