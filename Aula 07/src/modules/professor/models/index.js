@@ -1,16 +1,16 @@
 const { pool } = require('../../../config/database');
 
 class ProfessorModel {
-    static async criar(id, nome, turma, disciplina) {
-        const dados = [id, nome, turma, disciplina]
-        const consulta = `insert into professor(id, nome, turma, disciplina) values ($1, $2, $3, $4) returning *`
+    static async criar(id, nome, email, disciplina) {
+        const dados = [id, nome, email, disciplina]
+        const consulta = `insert into professor(id, nome, email, disciplina) values ($1, $2, $3, $4) returning *`
         const novoProfessor = await pool.query(consulta, dados)
         return novoProfessor.rows
     }
 
-    static async editar(id, nome, turma, disciplina) {
-        const dados = [id, nome, turma, disciplina]
-        const consulta = `update professor set nome = $2, turma = $3, disciplina = $4 where id = $1 returning *`
+    static async editar(id, nome, email, disciplina) {
+        const dados = [id, nome, email, disciplina]
+        const consulta = `update professor set nome = $2, email = $3, disciplina = $4 where id = $1 returning *`
         const professorAtualizado = await pool.query(consulta, dados)
         return professorAtualizado.rows
     }

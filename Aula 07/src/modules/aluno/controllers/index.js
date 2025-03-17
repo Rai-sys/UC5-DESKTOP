@@ -38,13 +38,41 @@ class AlunoController {
         }
     }
     static async editar(requisicao, resposta) {
-
+        try {
+            const matricula = requisicao.params.matricula
+            if (!matricula) {
+                return resposta.status(400).json({ mensagem: "Aluno nao expecificado!", erro: error.message })
+            }
+            const aluno = await AlunoModel.editar()
+            if (aluno) {
+                aluno.email = novoEmail || aluno.email,
+                aluno.senha = novaSenha || aluno.senhha
+            }
+            resposta.status(200).json({ mensagem: "Dados do aluno atualizado!" })
+        } catch (error) {
+            resposta.status(500).json({ mensagem: "Erro ao atualizar os dados.", erro: error.message })
+        }
     }
     static async excluirTodos(requisicao, resposta) {
-
+        try {
+            const alunos = await AlunoModel.excluirTodos()
+            if (alunos === 0) {
+                return resposta.status(200).json({ mensagem: "Nenhum aluno registrado." })
+            }
+        } catch (error) {
+            resposta.status(500).json({ mensagem: "Erro ao apagar todos os alunos.", erro: error.message })
+        }
     }
     static async excluirPorID(requisicao, resposta) {
-
+        try {
+            const matricula = requisicao.params.matricula
+            const aluno = await AlunoModel.excluirPorID(matricula)
+            if (aluno === 0) {
+                return resposta.status(200).json({ mensagem: "Aluno apagado com sucesso" })
+            }
+        } catch (error) {
+            resposta.status(500).json({ mensagem: "Erro ao deleter aluno.", erro: error.message })
+        }
     }
 }
 
