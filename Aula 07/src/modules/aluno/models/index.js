@@ -23,7 +23,7 @@ class AlunoModel {
 
     static async listarPorMatricula(matricula) {
         const dados = [matricula]
-        const consulta = `select from aluno where matricula = $1`
+        const consulta = `select * from aluno where matricula = $1`
         const aluno = await pool.query(consulta, dados)
         return aluno.rows
     }
