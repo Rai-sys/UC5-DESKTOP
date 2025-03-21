@@ -10,13 +10,13 @@ class CompartilhadaModel {
 
     static async editar(id, usuario, sala, dataHoraInicio, dataHoraFinal) {
         const dados = [id, usuario, sala, dataHoraInicio, dataHoraFinal]
-        const consulta = `update compartilhada set usuario = $2, sala = $3, data_hora_inicio = $4, data_hora_final = $5 where id = $1 returning *`
+        const consulta = `update compartilhada set usuario = $2, sala = $3, dataHoraInicio = $4, dataHoraFinal = $5 where id = $1 returning *`
         const compartilhadaAtt = await pool.query(consulta, dados)
         return compartilhadaAtt.rows
     }
 
     static async listarTodas() {
-        const consulta = `select * from aluno`
+        const consulta = `select * from compartilhada`
         const compartilhadas = await pool.query(consulta)
         return compartilhadas.rows
     }

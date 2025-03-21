@@ -1,7 +1,7 @@
 // Importando com (commonjs)
 const express = require("express");
 const dotenv = require("dotenv");
-const alunoRoutes = require("./src/modules/aluno/routes/index")
+const compartilhadaRoutes = require('./src/modules/compartilhada/routes/index')
 dotenv.config();
 
 const port = process.env.PORTA;
@@ -12,6 +12,7 @@ app.use(express.json());
 
 // passando as rotas de Aluno do route
 app.use(compartilhadaRoutes); 
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });

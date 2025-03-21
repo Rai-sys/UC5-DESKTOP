@@ -42,6 +42,7 @@ class CompartilhadaController {
             resposta.status(500).json({ mensagem: "Erro ao listar reserva cadastrada.", erro: error.message })
         }
     }
+    
     static async listarTodas(requisicao, resposta){
         try {
             const reservas = await CompartilhadaModel.listarTodas()
@@ -50,7 +51,7 @@ class CompartilhadaController {
             }
             resposta.status(200).json(reservas)
         } catch (error) {
-            resposta.status(500).json({ mensagem: "Erro ao listar reservas compartilhadas.", erro: error.message })
+            resposta.status(500).json({ mensagem: "Erro ao listar reservas compartilhadas." })
         }
     }
     static async deletarPorID(requisicao, resposta){
@@ -75,3 +76,5 @@ class CompartilhadaController {
         }
     }
 }
+
+module.exports = CompartilhadaController;
