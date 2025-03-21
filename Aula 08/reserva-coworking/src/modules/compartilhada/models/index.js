@@ -15,25 +15,25 @@ class CompartilhadaModel {
         return compartilhadaAtt.rows
     }
 
-    static async listarTodasComp() {
+    static async listarTodas() {
         const consulta = `select * from aluno`
         const compartilhadas = await pool.query(consulta)
         return compartilhadas.rows
     }
 
-    static async listarCompPorID(id) {
+    static async listarPorID(id) {
         const dados = [id]
         const consulta = `select * from compartilhada where id = $1`
         const compartilhada = await pool.query(consulta, dados)
         return compartilhada.rows
     }
 
-    static async deletarTodasComp() {
+    static async deletarTodas() {
         const consulta = `delete from compartilhada returning *`
         await pool.query(consulta)
     }
 
-    static async deletarCompPorID(id) {
+    static async deletarPorID(id) {
         const dados = [id]
         const consulta = `delete from compartilhada where id = $1 returning *`
         await pool.query(consulta, dados)
