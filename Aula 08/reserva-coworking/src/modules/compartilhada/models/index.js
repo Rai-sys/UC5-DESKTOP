@@ -1,6 +1,6 @@
 const { pool } = require('../../../config/database');
 
-class CompartilhadaModule {
+class CompartilhadaModel {
     static async criar(id, usuario, sala, dataHoraInicio, dataHoraFinal) {
         const dados = [id, usuario, sala, dataHoraInicio, dataHoraFinal]
         const consulta = `insert into compartilhada(id, usuario, sala, data_hora_inicio, data_hora_final ) values($1, $2, $3, $4, $5) returning *`
@@ -16,18 +16,28 @@ class CompartilhadaModule {
     }
 
     static async listarTodasComp() {
-
+        const consulta = `select * from aluno`
+        const compartilhadas = await pool.query(consulta)
+        return compartilhadas.rows
     }
 
-    static async listarCompPorID() {
-
+    static async listarCompPorID(id) {
+        const dados = [id]
+        const consulta = `select * from compartilhada where id = $1`
+        const compartilhada = await pool.query(consulta, dados)
+        return compartilhada.rows
     }
 
     static async deletarTodasComp() {
-
+        const consulta = `delete from compartilhada returning *`
+        await pool.query(consulta)
     }
 
-    static async deletarCompPorID() {
-
+    static async deletarCompPorID(id) {
+        const dados = [id]
+        const consulta = `delete from compartilhada where id = $1 returning *`
+        await pool.query(consulta, dados)
     }
 }
+
+module.exports = CompartilhadaModel;
