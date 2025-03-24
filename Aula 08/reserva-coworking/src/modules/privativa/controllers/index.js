@@ -1,6 +1,6 @@
-const CompartilhadaModel = require('../models/index')
+const PrivativaModel = require('../../privativa/models/index.js');
 
-class CompartilhadaController {
+class PrivativaController {
     static async criar(requisicao, resposta){
         try {
             const { id, usuario, sala, data_hora_inicio, data_hora_final, status } = requisicao.body;
@@ -77,4 +77,4 @@ class CompartilhadaController {
     }
 }
 
-module.exports = CompartilhadaController;
+module.exports = PrivativaController;
