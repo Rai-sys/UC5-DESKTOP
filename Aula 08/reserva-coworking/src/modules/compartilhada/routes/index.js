@@ -19,6 +19,6 @@ router.put("/compartilhada/:id", CompartilhadaController.editar)
 router.delete("/compartilhada/:id", CompartilhadaController.deletarPorID)
 
 // deletando todos
-router.delete("/compartilada", CompartilhadaController.deletarTodas)
+router.delete("/compartilhada", CompartilhadaController.deletarTodas)
 
 module.exports = router;

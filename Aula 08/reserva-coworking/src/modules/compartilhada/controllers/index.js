@@ -3,11 +3,11 @@ const CompartilhadaModel = require('../models/index')
 class CompartilhadaController {
     static async criar(requisicao, resposta){
         try {
-            const { id, usuario, sala, dataHoraInicio, dataHoraFinal } = requisicao.body;
-            if (!id || !usuario || !sala || !dataHoraInicio || !dataHoraFinal) {
+            const { id, usuario, sala, data_hora_inicio, data_hora_final, status } = requisicao.body;
+            if (!id || !usuario || !sala || !data_hora_inicio || !data_hora_final || !status) {
                 return resposta.status(400).json({ mensagem: "Preencha todos os campos para a reserva ser finalizada."})
             }
-            const novaReserva = await CompartilhadaModel.criar(id, usuario, sala, dataHoraInicio, dataHoraFinal);
+            const novaReserva = await CompartilhadaModel.criar(id, usuario, sala, data_hora_inicio, data_hora_final, status);
             resposta.status(201).json({ mensagem: "Reserva Compartilhada criada com sucesso!", reserva: novaReserva })
         } catch (error) {
             resposta.status(500).json({ mensagem: "Erro ao criar reserva Compartilhada.", erro: error.message })
@@ -17,11 +17,11 @@ class CompartilhadaController {
     static async editar(requisicao, resposta){
         try {
             const id = requisicao.params.id
-            const { usuario, sala, dataHoraInicio, dataHoraFinal } = requisicao.body
-            if ( !usuario || !sala || !dataHoraInicio || !dataHoraFinal ) {
+            const { usuario, sala, data_hora_inicio, data_hora_final, status} = requisicao.body
+            if ( !usuario || !sala || !data_hora_inicio || !data_hora_final || !status) {
                 return resposta.status(400).json({ mensagem: "Um campo deve ser preenchido no mínimo." })
             }
-            const reserva = await CompartilhadaModel.editar(id, usuario, sala, dataHoraInicio, dataHoraFinal)
+            const reserva = await CompartilhadaModel.editar(id, usuario, sala, data_hora_inicio, data_hora_final, status)
             if (reserva.length === 0) {
                 return resposta.status(400).json({ mensagem: "Reserva não encontrada para editar." })
             }
