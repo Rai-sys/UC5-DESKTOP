@@ -1,0 +1,20 @@
+// Importando com (commonjs)
+const express = require("express");
+const dotenv = require("dotenv");
+const alunoRoutes = require("./src/modules/aluno/routes/index")
+const enderecoRoutes = require("./src/modules/endereco/routes/index")
+dotenv.config();
+
+const port = process.env.PORTA;
+const app = express();
+
+// Aplicação use express como json(javascript object notation)
+app.use(express.json());
+
+// passando as rotas de Aluno do route
+app.use(enderecoRoutes); // ex.: "/api/oQueEstiverVindoDoRoute"
+app.use(alunoRoutes);
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});

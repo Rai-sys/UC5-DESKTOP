@@ -32,36 +32,31 @@ class EnderecoModel {
         const resultado = await pool.query(consulta, dados)
         return resultado.rows
     }
-
     static async listarEnderecos() {
         const consulta = `select * from endereco`
         const resultado = await pool.query(consulta)
         return resultado.rows
     }
-
     static async listarEndereco(matricula) {
         const dados = [matricula]
-        const consulta = `select aluno.matricula, aluno.nome, endereco.* from aluno
+        const consulta = `select aluno.*, endereco.* from aluno
         join endereco on aluno.matricula = endereco.matricula
         where aluno.matricula = $1`
         const resultado = await pool.query(consulta, dados)
         return resultado.rows
     }
-
     static async listarEnderecoCidade(cidade) {
-        const dados = [`%${cidade}%`]  // pegando o dado 'cidade'
-        const consulta = `select * from endereco where lower(localidade) like lower($1)`  // consulta para retornar tudo pela cidade
+        const dados = [cidade]  // pegando o dado 'cidade'
+        const consulta = `select * from endereco where localidade = $1`  // consulta para retornar tudo pela cidade
         const resultado = await pool.query(consulta, dados) // pegar todos os dados e consulta
         return resultado.rows  // retornar as linhas do resultado
     }
-
     static async listarEnderecoCEP(cep) {
         const dados = [cep]
         const consulta = `select * from endereco where cep = $1`
         const resultado = await pool.query(consulta, dados)
         return resultado.rows
     }
-
     static async editarEndereco(matricula, cep, numero, ponto_referencia) {
         const resposta = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         const { logradouro, complemento, bairro, localidade, uf } = resposta.data
