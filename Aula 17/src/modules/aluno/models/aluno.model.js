@@ -9,8 +9,8 @@ const AlunoModel = sequelize.define('AlunoModel',
         primaryKey: true,
         validate: {
             is: {
-                args: /^[a-zA-Z]\d{8}$/,
-                msg: 'A matrícula deve começar com uma letra e ter quatro números em seguir.'
+              args: /^[a-zA-Z]\d{8}$/,
+              msg: 'A matrícula deve começar com uma letra e ter quatro números em seguir.'
             }
         }
       },
@@ -30,7 +30,7 @@ const AlunoModel = sequelize.define('AlunoModel',
         unique: true,
         allowNull: false, // Caso erro, é aqui
         validate: {
-            isEmail: {
+            is: {
                 args: /^[a-zA-Z0-9._%+-]+@edum\.rn\.senac\.br$/,
                 msg: 'E-mail inválido! O e-mail deve pertencer ao dominio @edum.rn.senac.br.'
             }
@@ -56,8 +56,8 @@ const AlunoModel = sequelize.define('AlunoModel',
         type: DataTypes.CHAR(9),
         allowNull: false,
         references: {
-          model: turma,
-          key: turma_cod
+          model: 'turma',
+          key: 'turma_cod'
         }
       }
     },

@@ -1,7 +1,7 @@
 const sequelize = require('../../../config/configDb');
 const { DataTypes } = require('sequelize');
 
-const SecretarioModel = sequelize.define('SecretarioModel',
+const ProfessorModel = sequelize.define('ProfessorModel',
   {
     matricula: {
       type: DataTypes.CHAR(5),
@@ -13,7 +13,6 @@ const SecretarioModel = sequelize.define('SecretarioModel',
         }
       }
     },
-
     nome: {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -23,19 +22,17 @@ const SecretarioModel = sequelize.define('SecretarioModel',
         }
       }
     },
-
     email: {
       type: DataTypes.STRING(100),
       unique: true,
-      allowNull: false, // Caso erro, é aqui
+      allowNull: false,
       validate: {
         is: {
           args: /^[a-zA-Z0-9._%+-]+@rn\.senac\.br$/,
-          msg: 'E-mail inválido! O e-mail deve pertencer ao dominio @rn.senac.br.'
+          msg: 'E-mail inválido! O e-mail deve pertencer ao dominio @edum.rn.senac.br.'
         }
       }
     },
-
     senha: {
       type: DataTypes.STRING(12),
       allowNull: false,
@@ -52,10 +49,10 @@ const SecretarioModel = sequelize.define('SecretarioModel',
     }
   },
   {
-    tableName: 'Secretario',
+    tableName: 'Professor',
     createdAt: 'criado_em',
     updatedAt: 'atualizado_em'
-  }
+  },
 );
 
-module.exports = SecretarioModel;
+module.exports = ProfessorModel;
