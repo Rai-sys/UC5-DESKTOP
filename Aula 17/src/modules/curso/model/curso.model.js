@@ -25,7 +25,7 @@ const CursoModel = new sequelize('CursoModel',
       }
     },
     descricao: {
-      typeof: DataTypes.STRING(200),
+      typeof: DataTypes.STRING(150),
       allowNull: false
     }
   },
